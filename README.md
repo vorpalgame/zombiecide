@@ -14,7 +14,7 @@ names of first class functions. This provides a level of flexibiity and composab
 of the bus and engine code, it does demonstrate how the current design can accommodate those front end game designs if
 desired.
 
-The project depends on the vorpa "core" and "raylib-engine" projects
+The project depends on the vorpal "core" and "raylib-engine" projects
 
 The sample code separates the zombie sprites into state machines each responsible for their own actions and transitions
 to next states as well as firing events off to the engine.
