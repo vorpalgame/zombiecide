@@ -1,14 +1,22 @@
-# Examples
+# Zombiecide
 
-There are a few different examples under development and more planned. It's important to note a practical design principle that is used in Vorpal. The front end game logic doesn't handle any media resources. It specifies file names, x,y,width,height coordinates and so  on and passes those via an event to the back end. This keeps the front end decoupled from the back end implentation. While we are currently using Raylib, another engine might be developed in the future for ebiten or Unity or whatever makes sense. As an example, Raylib uses its own file types for images. If we loaded them in the front end they'd be inherently incompatible with other engines. Since we are just sending file names and rednering instructions, the engine implementation is free to implement it in whatever fashion makes sense. Any "impedance mismatch" is dealt with by the engine implementatoin code. 
+What can be more straightforward than a zombie, Henry, walking across the screen, groaning, moaning, attacking, falling
+down dead only rise back up and continue on?
 
-## Zombiecide
-Zombiecide shows a couple of different ways to do sprites with event driven programming. 
+The first member of the zombie family is Henry, a statemachine zombie who follows the mouse pointer, groans, attacks on
+command, and falls down dead if left idle too long. A newer addition is the subumption zombie, George, who is composed
+of multiple separate parts that are sewn together at ever higher level to create a whole. Behavior can be overridden at
+any level. Currently, for example, the head is overriden to present different ones over time. Later the leg, arms, feet
+or hands may change angle or flip horizontally based inputs.
 
-### State Machine
-The state machine uses multiple states along with flipbook style animations and audio. The state machine receives outside input like mouse events and passes that to the current state which determines its own behavior - including transitioning to a different state. 
+The state machine settings are read in from a yaml file, marshalled to structs, and behavior is composed by using the
+names of first class functions. This provides a level of flexibiity and composability. While this is not strictly part
+of the bus and engine code, it does demonstrate how the current design can accommodate those front end game designs if
+desired.
 
-### Subsumption Architecture
-In this case, the sprite is composed of individual parts like head, torso, hand, foot, etc and when input events  are received they are propagated from the more general to the most specific. Only when every specific behaivor is required is custom code required. For example, the current implementation that is under development has mutliple head graphcis that rotate with succeeding calls. Higher level parts needn't be aware. With time, rotation and angle of direction will be inlucded. An arm, for examplem, might calculate a direction to move and individual parts lilke shoulder, lower arm and hand might modify that highe level value as determinant in calculating its own x,y and direction.
+The project depends on the vorpa "core" and "raylib-engine" projects
 
-### Tarot
+The sample code separates the zombie sprites into state machines each responsible for their own actions and transitions
+to next states as well as firing events off to the engine.
+![image](https://github.com/vorpalgame/vorpal/assets/3209869/95c3be51-a423-405b-8825-f5114160776d)
+
