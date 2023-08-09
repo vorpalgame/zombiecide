@@ -1,0 +1,38 @@
+WindowTitle: Zombiecide
+WindowWidth: 1920
+WindowHeight: 1080
+RegisterKeys:
+  - 101
+  - 69
+  - 82
+  - 114
+  - 103
+  - 71
+  - 104
+  - 72
+Background:
+  LayerMetadata:
+    - ImageFileName: resources/background.png
+      X: 0
+      "Y": 0
+      Width: 1920
+      Height: 1080
+      HorizontalFlip: false
+BehaviorMap:
+  LayerMetadata:
+    - ImageFileName: resources/behaviorland.png
+      X: 0
+      "Y": 0
+      Width: 1920
+      Height: 1080
+      HorizontalFlip: false
+Foreground:
+  LayerMetadata:
+    - ImageFileName: resources/foreground.png
+      X: 0
+      "Y": 0
+      Width: 1920
+      Height: 1080
+      HorizontalFlip: false
+Actors:
+  - etc/henry.yaml
