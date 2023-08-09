@@ -68,7 +68,7 @@ StateMap:
         FrameTracker:
             CurrentFrame: 1
             MaxFrame: 10
-            RepeatPerFrame: 5
+            RepeatPerFrame: 2
             CurrentFrameRepeats: 1
             IdleFrames: 1
             LoopFrames: true

@@ -6,8 +6,6 @@ import (
 	"time"
 
 	"github.com/vorpalgame/zombiecide/state_machines"
-	"golang.org/x/mobile/event/mouse"
-
 	"github.com/vorpalgame/core/bus"
 	"github.com/vorpalgame/core/lib"
 )
@@ -76,19 +74,17 @@ func NewGame() {
 	textEvent.SetLocation(100, 100)
 	//
 	for {
-		if zombies.mouseEvent == nil {
-			zombies.mouseEvent=bus.NewMouseEvent(mouse.Event{X:800, Y:800})
-		}
-			drawEvt := bus.NewDrawLayersEvent()
-			drawEvt.AddImageLayer(*scene.Background)
+		drawEvt := bus.NewDrawLayersEvent()
+		drawEvt.AddImageLayer(*scene.Background)
+		if zombies.mouseEvent != nil {
 			stateMachineZombie.Execute(drawEvt, zombies.mouseEvent, zombies.keyEvent)
-			drawEvt.AddImageLayer(*scene.Foreground)
-			vbus.SendTextEvent(textEvent)
-			log.Println("Send draw event:", drawEvt)
-			vbus.SendDrawEvent(drawEvt)
+		}
+		drawEvt.AddImageLayer(*scene.Foreground)
+		vbus.SendDrawEvent(drawEvt)
+		vbus.SendTextEvent(textEvent)
 
-			zombies.keyEvent = nil
-			time.Sleep(20 * time.Millisecond)
+		zombies.keyEvent = nil
+		time.Sleep(20 * time.Millisecond)
 
 	
 
